@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import {Route, BrowserRouter as Router} from 'react-router-dom';
 import './App.css';
+//Pages
+import About from './pages/about'
+import Blog from './pages/blog'
 
+
+// Components
 import Header from './components/header';
 import Todos from './components/todos';
 import AddTodo from './components/add-todo';
+
 
 export class App extends Component {
   state = {
@@ -53,7 +59,12 @@ export class App extends Component {
   }
   addTodo = (title)=>
   {
-    console.log(title);
+    let newTodo = {
+      id : this.state.todos.length +1,
+      title :title,
+      completed: false
+    }
+    this.setState({todos: [...this.state.todos,newTodo] })
     
   }
   render() {
@@ -63,12 +74,24 @@ export class App extends Component {
         <Header/>
 
         <div className = "container">
-          <AddTodo addTodo = {this.addTodo} />
-        <Todos
-          todos = {this.state.todos}
-          isComplete = {this.isComplete} 
-          deleteTodo = {this.deleteTodo}
-        />
+          <Route exact path = "/" render = {props =>(
+            <React.Fragment>
+                <AddTodo addTodo = {this.addTodo} />
+                <Todos
+                  todos = {this.state.todos}
+                  isComplete = {this.isComplete} 
+                  deleteTodo = {this.deleteTodo}
+                />            
+            </React.Fragment>
+          )} />
+
+
+
+          <Route path = "/about" component = {About} />
+          <Route path = "/blog" component = {Blog} />
+
+          
+
         </div>
 
         
