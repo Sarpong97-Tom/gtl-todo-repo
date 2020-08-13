@@ -8,3 +8,8 @@ border-radius: 50%;
     margin: 15px 0px;
     padding: 10px 0px;
 }
+.card {
+    margin: 40px 15px;
+    padding: 20px 0px;
+    width: 80%;    
+}
