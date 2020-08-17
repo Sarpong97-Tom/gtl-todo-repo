@@ -13,3 +13,10 @@ border-radius: 50%;
     padding: 20px 0px;
     width: 80%;    
 }
+
+.spinner-border {
+   position: absolute;
+   top: 30%;
+   left: 30%;
+
+}

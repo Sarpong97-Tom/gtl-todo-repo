@@ -21,6 +21,8 @@ export class App extends Component {
    { 
        posts: [],
        todos: [],
+       loadingTodos : true,
+       loadingPosts: true
     }
 
     
@@ -30,7 +32,7 @@ export class App extends Component {
  {
     axios.get('https://jsonplaceholder.typicode.com/todos?_limit=6')
     .then( res=>{
-      this.setState({todos: res.data })
+      this.setState({todos: res.data,loadingTodos: false })
       
     }  )  
     .catch(err=>{
@@ -43,7 +45,7 @@ export class App extends Component {
    .then(res=>{
      console.log(res.data);
      
-     this.setState({posts: res.data  })
+     this.setState({posts: res.data, loadingPosts: false})
    })
    .catch(err=>{
      alert("Could not fetch posts. Check your internet connection")
@@ -131,6 +133,7 @@ export class App extends Component {
                   todos = {this.state.todos}
                   isComplete = {this.isComplete} 
                   deleteTodo = {this.deleteTodo}
+                  loading = {this.state.loadingTodos}
                 />            
             </React.Fragment>
           )} />
@@ -139,7 +142,7 @@ export class App extends Component {
 
           <Route path = "/about" component = {About} />
          <Route path = "/blog" render = {props=>(
-           <Blog posts = {this.state.posts} />
+           <Blog posts = {this.state.posts} loading = {this.state.loadingPosts} />
          )} />
 
           

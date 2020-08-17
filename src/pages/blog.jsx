@@ -7,7 +7,7 @@ export class Blog extends Component {
         return (
             <div>
                
-                <Blogs posts = {this.props.posts} />
+                <Blogs posts = {this.props.posts} loading = {this.props.loading} />
             </div>
         )
     }
